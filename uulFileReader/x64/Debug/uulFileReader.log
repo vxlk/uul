@@ -1,0 +1,11 @@
+﻿  readURL.cpp
+c:\users\ty\downloads\uul-master-4-7-2018\uul-master\uulfilereader\readurl.cpp(64): warning C4244: '*=': conversion from 'double' to 'float', possible loss of data
+c:\users\ty\downloads\uul-master-4-7-2018\uul-master\uulfilereader\readurl.cpp(107): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+c:\users\ty\downloads\uul-master-4-7-2018\uul-master\uulfilereader\readurl.cpp(126): warning C4566: character represented by universal-character-name '\uFFFD' cannot be represented in the current code page (1252)
+c:\users\ty\downloads\uul-master-4-7-2018\uul-master\uulfilereader\readurl.cpp(70): warning C4715: 'convertFromScientificNotation': not all control paths return a value
+readURL.obj : error LNK2019: unresolved external symbol curl_easy_init referenced in function "public: void __cdecl readURL::standardReadFromString(void)" (?standardReadFromString@readURL@@QEAAXXZ)
+readURL.obj : error LNK2019: unresolved external symbol curl_easy_setopt referenced in function "public: void __cdecl readURL::standardReadFromString(void)" (?standardReadFromString@readURL@@QEAAXXZ)
+readURL.obj : error LNK2019: unresolved external symbol curl_easy_perform referenced in function "public: void __cdecl readURL::standardReadFromString(void)" (?standardReadFromString@readURL@@QEAAXXZ)
+readURL.obj : error LNK2019: unresolved external symbol curl_easy_cleanup referenced in function "public: void __cdecl readURL::standardReadFromString(void)" (?standardReadFromString@readURL@@QEAAXXZ)
+curl\libcurl-vc14-x86-release-static-ipv6-sspi-winssl\lib\libcurl_a.lib : warning LNK4272: library machine type 'x86' conflicts with target machine type 'x64'
+C:\Users\Ty\Downloads\uul-master-4-7-2018\uul-master\x64\Debug\uulFileReader.exe : fatal error LNK1120: 4 unresolved externals

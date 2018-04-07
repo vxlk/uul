@@ -15,15 +15,10 @@ Database is kept at <INSERT URL>
 ///TODO FIX TIME PLAYED READIN
 ///A FLOAT IS USED IF THE TIME IS IN SECONDS. POTENTIAL FOR ERROR
 
-#include <string>
-#include "curl\curl.h"
-#include <fstream>
-#include <algorithm>
-#include <vector>
-#include <cmath>
+#include "readURL.h"
+#include <iostream>
 
-
-#define CURL_LIB_LOCATION "uulFileReader/curl/libcurl-vc14-x86-release-static-ipv6-sspi-winssl/lib/libcurl_a"
+#define CURL_LIB_LOCATION "curl/libcurl-vc14-x86-release-static-ipv6-sspi-winssl/lib/libcurl_a"
 #pragma comment(lib, CURL_LIB_LOCATION)
 
 static size_t WriteCallback(void *contents, size_t size, size_t nmemb, void *userp)
@@ -78,16 +73,24 @@ float convertFromScientificNotation(std::string statNum) {
 /*
 Scrape the data, and read it into a string buffer
 */
-void standardReadFromString() {
+void readURL::standardReadFromString(char* URL) {
 
 	CURL *curl;
 	CURLcode res;
 	std::string readBuffer;
+	std::string URLtoString(URL);
+	std::string urlRawFileName = "uulRawFile-" + URLtoString;
+
+	//format file name
+	std::replace(urlRawFileName.begin(), urlRawFileName.end(), '.', '-');
+	std::replace(urlRawFileName.begin(), urlRawFileName.end(), '/', '-');
+	urlRawFileName.erase(std::remove(urlRawFileName.begin(), urlRawFileName.end(), ':'), urlRawFileName.end());
+	urlRawFileName += ".txt";
 
 	curl = curl_easy_init();
 	if (curl) {
-		//https://playoverwatch.com/en-us/career/pc/ZerG-11720
-		curl_easy_setopt(curl, CURLOPT_URL, "https://playoverwatch.com/en-us/career/pc/Alarm-31558");
+	
+		curl_easy_setopt(curl, CURLOPT_URL, "https://playoverwatch.com/en-us/career/pc/nullptr-11773");
 		curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
 		curl_easy_setopt(curl, CURLOPT_WRITEDATA, &readBuffer);
 		res = curl_easy_perform(curl);
@@ -105,43 +108,16 @@ void standardReadFromString() {
 
 		///TESTING
 		std::ofstream out;
-		out.open("yeye.txt");
+		out.open(urlRawFileName.c_str());
 
-
-		///SHORTEN THE BUFFER TO ONLY COMP STATS
-		int pos = readBuffer.find("div id=\"competitive\"");
-		char* newBuffer = new char[readBuffer.size() - pos];
-
-		int index = 0;
-		if (pos != readBuffer.npos)
-			for (int u = pos; u < readBuffer.size(); u++) {
-				newBuffer[index] = readBuffer[u];
-				++index;
-			}
-
-		//cURL uses c89, so when working with it we have to use char buffers
-		//I am converting to a string for ease of use
-		std::string str(newBuffer);
-
-		//shortenBuffer(str);
+		//convert char buffer to string
+		std::string bufferString(readBuffer);
 
 		//call subroutines
 
 		///TESTING
-		std::replace(str.begin(), str.end(), '�', '/');
-		out << str << std::endl;
+		out << bufferString << std::endl;
 
 
 	}
 }
-
-int main(void)
-{
-	standardReadFromString();
-
-	std::ofstream out;
-	out.open("testOutput.txt");
-
-	return 0;
-}
-
