@@ -4,8 +4,9 @@
 
 int main(void)
 {
+	char* input = "https://cryptowat.ch/";
 	readURL readURLObj;
-	readURLObj.standardReadFromString("https://playoverwatch.com/en-us/career/pc/ZerG-11720");
+	readURLObj.standardReadFromString(input);
 
 	std::ofstream out;
 	out.open("testOutput.txt");

@@ -90,7 +90,7 @@ void readURL::standardReadFromString(char* URL) {
 	curl = curl_easy_init();
 	if (curl) {
 	
-		curl_easy_setopt(curl, CURLOPT_URL, "https://playoverwatch.com/en-us/career/pc/nullptr-11773");
+		curl_easy_setopt(curl, CURLOPT_URL, URL);
 		curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
 		curl_easy_setopt(curl, CURLOPT_WRITEDATA, &readBuffer);
 		res = curl_easy_perform(curl);
@@ -116,6 +116,7 @@ void readURL::standardReadFromString(char* URL) {
 		//call subroutines
 
 		///TESTING
+		out << URL << std::endl;
 		out << bufferString << std::endl;
 
 
