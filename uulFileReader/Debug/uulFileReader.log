@@ -1,2 +1,2 @@
 ﻿  driver.cpp
-  uulFileReader.vcxproj -> C:\Users\Ty\Downloads\uul-master-4-7-2018\uul-master\Debug\uulFileReader.exe
+c:\users\tyler\documents\visual studio 2015\projects\uulfilereader\uulfilereader\driver.cpp(6): error C3861: 'standardReadFromString': identifier not found
